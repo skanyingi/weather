@@ -49,7 +49,7 @@ export function SearchBar({ onSearch, onSubmit, searching, disabled }) {
           type="text"
           inputMode="search"
           autoComplete="off"
-          placeholder="Search for a city, postcode or address"
+          placeholder="Search for a city"
           value={value}
           onChange={handleChange}
           disabled={disabled}
