@@ -1,0 +1,44 @@
+API key   - GK4JZS3AF4L89A4JN9SLG5FX3
+
+Build a complete weather app frontend that I can deploy on Vercel or Netlify.
+
+CONTEXT
+This fulfills an assignment with the following requirements — implement all of them:
+- User can enter a location into an input field and get current weather
+- Display temperature, wind speed, likelihood of rain, and general conditions (Sunny, Raining, Cloudy, etc.)
+- Show the previous and future 24-hour periods (hourly forecast, past 24h + next 24h)
+- User can refresh the weather outlook on demand
+- Stretch goal 1: use an animation library (e.g. Framer Motion) to make loading/transitions visually appealing
+- Stretch goal 2: default view on load should be the user's current location (via browser geolocation), falling back to a manual search if permission is denied
+
+TECH STACK
+- React (Vite) with Framer Motion for animations
+- Plain CSS or Tailwind — your call, pick one and be consistent
+- No backend — call the weather API directly from the frontend
+- Deployable as a static site on Vercel/Netlify
+
+WEATHER DATA
+- Use the Visual Crossing Weather API (https://www.visualcrossing.com/weather-api) — Timeline Weather API endpoint
+- Fetch by location string, and also support lat/long (for geolocation-based default view)
+- Request hourly data covering the past 24 hours and next 24 hours
+- API key should be read from an environment variable (VITE_WEATHER_API_KEY or similar), not hardcoded — include a .env.example file
+- Handle API errors gracefully (invalid location, rate limits, network failure) with a user-facing error state
+
+CORE FEATURES
+1. Search input: user types a location and submits (Enter key or button) to fetch weather
+2. On page load: attempt to get user's current location via the browser Geolocation API; if granted, fetch weather for those coordinates; if denied/unavailable, show a prompt to search manually (no crash, no silent failure)
+3. Current conditions card: temperature (with "feels like"), wind speed, chance of rain, and a condition label + icon (sunny/rainy/cloudy/etc.)
+4. 24-hour timeline: a scrollable or paginated view showing hourly data for the past 24h and next 24h, each hour showing time, temp, condition icon, and rain chance
+5. Refresh button: re-fetches current weather data on demand, with a visible loading state
+6. Loading states: skeleton loaders or animated transitions (via Framer Motion) while data is fetching — no jarring blank screens or layout shift
+7. Responsive design: works well on mobile and desktop
+
+CODE QUALITY
+- Organize into clear components (SearchBar, CurrentWeather, HourlyTimeline, RefreshButton, LoadingState, ErrorState)
+- Separate the API-fetching logic into its own module/hook (e.g. useWeather.js)
+- Debounce or guard against duplicate rapid API calls
+- Comment non-obvious logic (timezone handling for past/future 24h windows especially — Visual Crossing returns local time for the queried location, so handle that correctly rather than assuming the user's browser timezone)
+
+DELIVERABLE
+- Full file structure and all code needed to run locally and deploy on Vercel/Netlify
+- A README with setup instructions, including how to get and set the Visual Crossing API key, and how to deploy
